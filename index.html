@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Bo simulator</title>
+  <meta name="description" content="Bo simulator: ett litet spel om Bo, 19 år. Jobba i kassan på Prisma, gymma, spela PUBG och nå 19 poäng." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎂</text></svg>" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topp">
+    <h1>Bo simulator</h1>
+    <div class="matare">
+      <div class="poang" aria-live="polite"><span id="poang">0</span><small>/19 poäng</small></div>
+      <div class="stapel" title="Energi">
+        <span>⚡</span><div class="stapel-ram"><div id="energi" class="stapel-fyll energi"></div></div>
+      </div>
+      <div class="stapel" title="Mätt">
+        <span>🍽️</span><div class="stapel-ram"><div id="matt" class="stapel-fyll matt"></div></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div id="karta" class="karta" role="grid" aria-label="Spelkartan"></div>
+    <p class="hjalp">Gå med <b>piltangenterna</b> eller <b>WASD</b>, eller tryck på ett ställe på kartan.</p>
+    <section class="lista">
+      <h2>Saker Bo kan göra</h2>
+      <ul id="lista"></ul>
+    </section>
+  </main>
+
+  <div id="ruta" class="ruta" hidden>
+    <div class="ruta-inre" role="dialog" aria-modal="true" aria-labelledby="rutaTitel">
+      <div class="ruta-emoji" id="rutaEmoji"></div>
+      <h2 id="rutaTitel"></h2>
+      <p id="rutaText"></p>
+      <div id="rutaSpel"></div>
+      <div class="ruta-knappar" id="rutaKnappar"></div>
+    </div>
+  </div>
+
+  <div id="konfetti" class="konfetti" aria-hidden="true"></div>
+  <script src="game.js"></script>
+</body>
+</html>
