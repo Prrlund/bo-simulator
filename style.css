@@ -1,140 +1,200 @@
 :root {
-  --bg: #fff8ec;
-  --ink: #1d1b18;
-  --dim: #6b655b;
+  --bg: #fdf4e3;
+  --ink: #2a2420;
+  --dim: #7a6f62;
   --gul: #ffc53d;
-  --gras: #b9e3a2;
-  --gras2: #a9d891;
-  --vag: #e9dcc3;
-  --golv: #f1e2c6;
-  --golv2: #e8d5b2;
-  --rosa: #ff8fb1;
-  --bla: #6cb6ff;
+  --rosa: #ff7aa2;
+  --rod: #ff4d6d;
+  --kort: #fffdf8;
 }
 * { box-sizing: border-box; margin: 0; }
-html, body { background: var(--bg); color: var(--ink); }
+html { background: var(--bg); }
 body {
-  font-family: ui-rounded, "SF Pro Rounded", "Segoe UI", system-ui, sans-serif;
-  min-height: 100svh; padding: 12px 12px 40px;
+  font-family: "Fredoka", ui-rounded, "SF Pro Rounded", system-ui, sans-serif;
+  color: var(--ink); min-height: 100svh; padding: 14px 12px 48px;
+  background:
+    radial-gradient(circle at 10% 0%, #ffe7b8 0, transparent 40%),
+    radial-gradient(circle at 100% 30%, #ffd9e5 0, transparent 35%),
+    var(--bg);
   -webkit-tap-highlight-color: transparent;
 }
-main { max-width: 820px; margin: 0 auto; }
+main, .topp { max-width: 860px; margin-inline: auto; }
+svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.ikon { display: inline-block; width: 100%; height: 100%; vertical-align: middle; }
 
-.topp {
-  max-width: 820px; margin: 0 auto 12px;
-  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px;
-}
-.topp h1 { font-size: clamp(1.4rem, 5vw, 2rem); letter-spacing: -.02em; }
-.matare { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+/* ── Toppen ─────────────────────────────────────────────── */
+.topp { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; margin-bottom: 12px; }
+.topp h1 { display: flex; align-items: center; gap: 8px; font-size: clamp(1.5rem, 5.4vw, 2.2rem); font-weight: 700; letter-spacing: -.01em; }
+.logo { width: 1.5em; height: 1.5em; display: inline-block; }
+.hud { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 14px; }
+.hjartan { display: flex; gap: 3px; }
+.hjartan span { width: 30px; height: 30px; display: block; }
+.hjartan span.forlorad { animation: tappa .5s; }
+@keyframes tappa { 30% { transform: scale(1.4) rotate(-10deg); } }
 .poang {
   background: var(--gul); border: 3px solid var(--ink); border-radius: 14px;
-  padding: 4px 12px; font-weight: 900; font-size: 1.4rem; box-shadow: 3px 3px 0 var(--ink);
+  padding: 2px 12px; font-weight: 700; font-size: 1.5rem; box-shadow: 3px 3px 0 var(--ink);
 }
-.poang small { font-size: .8rem; font-weight: 700; margin-left: 2px; }
-.stapel { display: flex; align-items: center; gap: 6px; }
-.stapel-ram { width: 90px; height: 14px; border: 2px solid var(--ink); border-radius: 99px; overflow: hidden; background: #fff; }
-.stapel-fyll { height: 100%; transition: width .4s ease; }
-.energi { background: linear-gradient(90deg, #ffd54a, #ffb300); }
+.poang small { font-size: .85rem; margin-left: 2px; }
+.poang.plus { animation: pop .4s; }
+@keyframes pop { 40% { transform: scale(1.25); } }
+.matare { display: grid; gap: 4px; }
+.stapel { display: flex; align-items: center; gap: 6px; font-size: .78rem; font-weight: 600; color: var(--dim); }
+.stapel span { width: 40px; }
+.stapel-ram { width: 110px; height: 12px; border: 2.5px solid var(--ink); border-radius: 99px; overflow: hidden; background: #fff; }
+.stapel-fyll { height: 100%; transition: width .5s linear, background .3s; }
+.energi { background: linear-gradient(90deg, #ffd54a, #ffab00); }
 .matt { background: linear-gradient(90deg, #8be28b, #3fb950); }
+.stapel-fyll.lag { background: linear-gradient(90deg, #ff8a8a, #ff4d6d); animation: blink 1s infinite; }
+@keyframes blink { 50% { opacity: .45; } }
 
-/* Kartan: ett rutnät med 14 x 11 rutor */
-.karta {
-  --kol: 14;
-  display: grid; grid-template-columns: repeat(var(--kol), 1fr);
-  border: 3px solid var(--ink); border-radius: 16px; overflow: hidden;
-  box-shadow: 4px 4px 0 var(--ink); user-select: none; touch-action: manipulation;
+/* ── Kartan ─────────────────────────────────────────────── */
+.karta-ram {
+  position: relative; border: 4px solid var(--ink); border-radius: 22px; overflow: hidden;
+  box-shadow: 6px 6px 0 var(--ink), inset 0 0 0 4px rgba(255,255,255,.25);
 }
-.ruta-k {
-  position: relative; aspect-ratio: 1; display: grid; place-items: center;
-  font-size: clamp(14px, 4.6vw, 34px); line-height: 1; cursor: pointer;
+.karta { display: grid; grid-template-columns: repeat(14, 1fr); user-select: none; touch-action: manipulation; }
+.ruta-k { position: relative; aspect-ratio: 1; cursor: pointer; }
+.gras {
+  background-color: #9fd67f;
+  background-image: radial-gradient(#8cc96c 1.5px, transparent 1.6px), radial-gradient(#b4e398 1.2px, transparent 1.3px);
+  background-size: 14px 14px, 11px 11px; background-position: 0 0, 6px 7px;
 }
-.gras { background: var(--gras); }
-.gras:nth-child(odd) { background: var(--gras2); }
-.vag { background: var(--vag); }
-.golv { background: var(--golv); }
-.golv:nth-child(even) { background: var(--golv2); }
-.vagg { background: #8b6f4e; cursor: default; }
-.trad { background: var(--gras); }
-.plats {
-  border-radius: 10px; margin: 2px; background: #fff;
-  box-shadow: inset 0 0 0 2px rgba(29,27,24,.85);
+.vag {
+  background-color: #eadbbd;
+  background-image: radial-gradient(#d9c7a3 1.4px, transparent 1.5px);
+  background-size: 9px 9px;
+  box-shadow: inset 0 0 0 1px rgba(160,130,90,.15);
 }
-.plats.klar::after {
-  content: "✓"; position: absolute; top: -2px; right: 1px;
-  font-size: clamp(9px, 2.2vw, 14px); font-weight: 900; color: #2e9e45;
+.golv {
+  background-color: #f3dfb9;
+  background-image: repeating-linear-gradient(90deg, transparent 0 calc(50% - 1px), rgba(150,110,60,.22) calc(50% - 1px) 50%),
+    repeating-linear-gradient(0deg, transparent 0 24%, rgba(150,110,60,.12) 24% 25%);
+}
+.matta {
+  background-color: #ffbdd0;
+  background-image: repeating-linear-gradient(45deg, rgba(255,255,255,.35) 0 6px, transparent 6px 12px);
+}
+.vagg {
+  cursor: default; background-color: #8e6a47;
+  background-image: linear-gradient(rgba(0,0,0,.18) 2px, transparent 2px), linear-gradient(90deg, rgba(0,0,0,.18) 2px, transparent 2px);
+  background-size: 100% 33%, 50% 66%;
+}
+.trad { cursor: default; }
+.trad .ikon { position: absolute; inset: 4%; }
+.plats .kort {
+  position: absolute; inset: 7%; background: var(--kort); border: 2.5px solid var(--ink); border-radius: 22%;
+  box-shadow: 0 3px 0 var(--ink); padding: 9%; transition: transform .15s;
+}
+.plats:hover .kort { transform: translateY(-2px); }
+.plats .klar-bock {
+  position: absolute; top: -2px; right: -2px; width: 34%; height: 34%; border-radius: 50%;
+  background: #3fb950; border: 2px solid var(--ink); color: #fff; font-size: clamp(7px, 1.6vw, 12px);
+  display: grid; place-items: center; font-weight: 700; z-index: 1;
 }
 .namn {
-  position: absolute; bottom: -2px; left: 50%; transform: translateX(-50%);
-  font-size: clamp(7px, 1.5vw, 11px); font-weight: 800; white-space: nowrap;
-  background: rgba(255,255,255,.9); padding: 0 4px; border-radius: 6px; pointer-events: none;
+  position: absolute; left: 50%; bottom: -6%; transform: translateX(-50%); z-index: 1;
+  font-size: clamp(7px, 1.35vw, 11px); font-weight: 600; white-space: nowrap;
+  background: var(--ink); color: #fff; padding: 0 5px; border-radius: 6px; pointer-events: none;
 }
-@media (max-width: 560px) { .namn { display: none; } }
-.bo {
-  position: absolute; inset: 0; display: grid; place-items: center; z-index: 2;
-  font-size: clamp(16px, 5.4vw, 38px); transition: transform .1s; pointer-events: none;
-  filter: drop-shadow(0 2px 0 rgba(0,0,0,.25));
+@media (max-width: 600px) { .namn { display: none; } }
+
+/* Figurerna rör sig mjukt ovanpå rutnätet */
+.lager { position: absolute; inset: 0; pointer-events: none; }
+.figur {
+  position: absolute; width: calc(100% / 14); height: calc(100% / 11);
+  transition: left .16s linear, top .16s linear;
 }
-.bo-hopp { animation: hopp .25s ease; }
-@keyframes hopp { 50% { transform: translateY(-18%); } }
+.figur .ikon { display: block; width: 88%; height: 88%; margin: 6%; }
+.figur .ikon { filter: drop-shadow(0 3px 0 rgba(0,0,0,.2)); }
+.bo { z-index: 3; }
+.bo .ikon { animation: guppa 1s ease-in-out infinite; }
+@keyframes guppa { 50% { transform: translateY(-5%); } }
+.bo.skadad { animation: skadad .2s steps(2) 10; }
+@keyframes skadad { 50% { opacity: .2; } }
+.fiende { z-index: 2; transition: left .55s ease-in-out, top .55s ease-in-out; }
+.fiende .ikon { animation: svava 1.4s ease-in-out infinite; }
+@keyframes svava { 50% { transform: translateY(-8%) rotate(4deg); } }
+.fiende.borta { opacity: 0; transform: scale(.3); transition: opacity .4s, transform .4s; }
 
-.hjalp { margin: 10px 2px; color: var(--dim); font-size: .9rem; }
+.meddelande {
+  position: absolute; left: 50%; top: 10px; transform: translateX(-50%); z-index: 5;
+  background: var(--ink); color: #fff; font-weight: 600; font-size: .95rem; text-align: center;
+  padding: 8px 14px; border-radius: 12px; opacity: 0; transition: opacity .25s; pointer-events: none; max-width: 90%;
+}
+.meddelande.syns { opacity: 1; }
 
-.lista h2 { font-size: 1.1rem; margin: 14px 0 8px; }
-.lista ul { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 6px; }
+/* Hot just nu */
+.hot { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 0; min-height: 34px; }
+.hot-chip {
+  display: flex; align-items: center; gap: 6px; padding: 3px 10px 3px 4px; font-size: .84rem; font-weight: 600;
+  background: var(--kort); border: 2.5px solid var(--ink); border-radius: 99px;
+}
+.hot-chip .ikon { width: 24px; height: 24px; }
+.hot-chip small { color: var(--dim); font-weight: 500; }
+
+.hjalp { margin: 10px 2px 0; color: var(--dim); font-size: .9rem; }
+
+.lista h2 { font-size: 1.15rem; margin: 18px 0 8px; }
+.lista ul { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 7px; }
 .lista li {
-  display: flex; align-items: center; gap: 8px; padding: 6px 10px; font-size: .92rem;
-  background: #fff; border: 2px solid var(--ink); border-radius: 12px; cursor: pointer;
+  display: flex; align-items: center; gap: 8px; padding: 5px 10px 5px 6px; font-size: .92rem; font-weight: 500;
+  background: var(--kort); border: 2.5px solid var(--ink); border-radius: 14px; cursor: pointer; transition: transform .12s;
 }
-.lista li .antal { margin-left: auto; font-weight: 900; color: var(--dim); }
-.lista li.gjord .antal { color: #2e9e45; }
+.lista li:hover { transform: translateY(-2px); }
+.lista li .ikon { width: 30px; height: 30px; flex: none; }
+.lista li .antal { margin-left: auto; font-weight: 700; color: #3fb950; }
 
-/* Rutan som öppnas när Bo gör något */
-.ruta {
-  position: fixed; inset: 0; z-index: 10; display: grid; place-items: center;
-  background: rgba(29,27,24,.45); padding: 14px;
-}
+/* ── Rutan ──────────────────────────────────────────────── */
+.ruta { position: fixed; inset: 0; z-index: 10; display: grid; place-items: center; background: rgba(42,36,32,.5); padding: 14px; }
 .ruta[hidden] { display: none; }
 .ruta-inre {
-  width: min(420px, 100%); background: #fff; border: 3px solid var(--ink); border-radius: 20px;
-  box-shadow: 6px 6px 0 var(--ink); padding: 20px; text-align: center;
-  animation: in .2s ease-out;
+  width: min(430px, 100%); background: var(--kort); border: 4px solid var(--ink); border-radius: 24px;
+  box-shadow: 7px 7px 0 var(--ink); padding: 22px 20px; text-align: center; animation: in .22s ease-out;
 }
-@keyframes in { from { transform: scale(.9); opacity: 0; } }
-.ruta-emoji { font-size: 56px; line-height: 1.1; }
-.ruta-inre h2 { margin: 6px 0; font-size: 1.35rem; }
+@keyframes in { from { transform: scale(.88) translateY(10px); opacity: 0; } }
+.ruta-ikon { width: 88px; height: 88px; margin: -6px auto 4px; }
+.ruta-inre h2 { font-size: 1.45rem; font-weight: 700; margin-bottom: 4px; }
 .ruta-inre p { color: var(--dim); line-height: 1.45; min-height: 1.4em; }
-#rutaSpel { margin: 14px 0 4px; }
+#rutaSpel { margin: 14px 0 2px; }
 .ruta-knappar { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 14px; }
 .knapp {
-  font: inherit; font-weight: 800; font-size: 1rem; cursor: pointer;
-  padding: 11px 18px; border-radius: 14px; border: 3px solid var(--ink);
+  font: inherit; font-weight: 600; font-size: 1.05rem; cursor: pointer;
+  padding: 10px 18px; border-radius: 14px; border: 3px solid var(--ink);
   background: #fff; color: var(--ink); box-shadow: 3px 3px 0 var(--ink);
 }
 .knapp:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--ink); }
 .knapp.gul { background: var(--gul); }
-.knapp.stor { font-size: 1.3rem; padding: 16px 26px; }
-.framsteg { height: 16px; border: 2px solid var(--ink); border-radius: 99px; overflow: hidden; background: #f3efe6; }
-.framsteg div { height: 100%; width: 0; background: var(--gul); transition: width .15s linear; }
-.saker { font-size: 40px; min-height: 52px; letter-spacing: 6px; }
-.tangenter { display: flex; justify-content: center; gap: 6px; margin-top: 10px; }
+.knapp.stor { font-size: 1.3rem; padding: 14px 28px; }
+.framsteg { height: 18px; border: 3px solid var(--ink); border-radius: 99px; overflow: hidden; background: #f3ece0; }
+.framsteg div { height: 100%; width: 0; background: repeating-linear-gradient(45deg, var(--gul) 0 10px, #ffb300 10px 20px); transition: width .15s linear; }
+.saker { font-size: 44px; min-height: 56px; }
+.tangenter { display: flex; justify-content: center; gap: 6px; margin-top: 12px; }
 .tangent {
-  width: 54px; height: 90px; border: 3px solid var(--ink); border-radius: 0 0 10px 10px; background: #fff;
-  font: inherit; font-weight: 900; font-size: 1.2rem; cursor: pointer; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 8px;
+  width: 52px; height: 92px; border: 3px solid var(--ink); border-radius: 0 0 12px 12px; background: #fff;
+  font: inherit; font-weight: 700; font-size: 1.15rem; cursor: pointer; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 8px;
+  box-shadow: 0 4px 0 var(--ink);
 }
 .tangent.lyser { background: var(--gul); }
 .tangent.fel { animation: skaka .25s; }
 @keyframes skaka { 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
 .sang { font-style: italic; color: var(--ink); margin-top: 10px; min-height: 1.4em; }
-.liten { font-size: .82rem; color: var(--dim); margin-top: 8px; }
+.plus-rad { font-size: 1.4rem; font-weight: 700; color: #3fb950; }
+.botad { color: #6b4fd8; font-weight: 600; margin-top: 4px; }
+.liten { font-size: .84rem; color: var(--dim); margin-top: 8px; }
+.regler { text-align: left; display: grid; gap: 8px; margin-top: 12px; color: var(--ink); font-size: .95rem; }
+.regler div { display: flex; align-items: center; gap: 10px; }
+.regler .ikon { width: 34px; height: 34px; flex: none; }
 
-/* Konfetti när Bo vinner */
 .konfetti { position: fixed; inset: 0; pointer-events: none; z-index: 20; overflow: hidden; }
-.konfetti i {
-  position: absolute; top: -20px; width: 10px; height: 14px; border-radius: 3px;
-  animation: fall linear forwards;
-}
+.konfetti i { position: absolute; top: -20px; width: 10px; height: 14px; border-radius: 3px; animation: fall linear forwards; }
 @keyframes fall { to { transform: translateY(110vh) rotate(720deg); } }
 
+@media (max-width: 600px) {
+  .hjartan span { width: 24px; height: 24px; }
+  .stapel-ram { width: 80px; }
+  .karta-ram { border-width: 3px; border-radius: 16px; box-shadow: 4px 4px 0 var(--ink); }
+}
 @media (prefers-reduced-motion: reduce) {
-  * { animation: none !important; transition: none !important; }
+  * { animation: none !important; }
 }
